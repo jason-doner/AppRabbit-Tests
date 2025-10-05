@@ -1,6 +1,9 @@
     import { test, expect } from '@playwright/test';
 
     test('should mimic logging in to admin dashboard', async ({ page }) => {
+      const email = process.env.EMAIL!;
+      const password = process.env.PASSWORD!;
+
       await page.goto('https://app.apprabbit.com/login');
 
       // Assertions
@@ -11,11 +14,11 @@
       await page.getByRole('button', { name: 'Continue with Email'}).click();
 
       // Locate and enter email into input field
-      await page.getByPlaceholder("Email").fill("jasndoner@gmail.com");
+      await page.getByPlaceholder("Email").fill(email);
       await page.getByRole('button', { name: 'Continue' }).click();
 
       // Locate and enter password into input field
-      await page.getByPlaceholder("Password").fill("puD2i!b7P7RnXX8");
+      await page.getByPlaceholder("Password").fill(password);
       await page.getByRole('button', { name: 'Log In' }).click();
 
       // Assert URL change
